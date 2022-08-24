@@ -1,0 +1,44 @@
+
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="{% static 'admin.css' %}">
+  <script type="text/javascript" src="{% static 'admin.js' %}"></script>
+  <title>Admin Panel | Food Tracker</title>
+</head>
+</head>
+<body>
+
+<h2>Number of Breakfast : {{no_of_breakfast}}</h2>
+
+<h2>Number of Snacks : {{no_of_snacks}}</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th>Breakfast</th>
+    <th>Snacks</th>
+  </tr>
+  {% for i in opts %}
+    <tr class="tr_data">
+      <td class="tr_name">{{i.0}}</td>
+      <td class="tr_phone">{{i.1}}</td>
+      <td class="tr_brek">{{i.2}}</td>
+      <td class="tr_snak">{{i.3}}</td>
+    </tr>
+  {% endfor %}
+
+</table>
+
+{% comment %} <font color="green" id="sms_response">{{sms_message}}</font> {% endcomment %}
+<div style="color: green; margin-top: 15px; margin-bottom: 5px;" id="sms_response_brek"></div>
+<button onclick="send_sms_brek()">Send SMS for Breakfast</button>
+<div style="color: green; margin-top: 15px; margin-bottom: 5px;" id="sms_response_snak"></div>
+<button onclick="send_sms_snak()">Send SMS for Snacks</button>
+<br><br>
+<a href={% url 'logout' %}>Logout</a>
+
+</body>
+</html>
+

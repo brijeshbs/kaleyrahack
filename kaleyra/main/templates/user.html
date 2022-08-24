@@ -1,0 +1,43 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'user.css' %}">
+        <script type="text/javascript" src="{% static 'user.js' %}"></script>
+        <title>User | Food Tracker</title>
+      </head>
+<body>
+
+    <font color="green">{{message}}</font>
+
+<h2>Number of Breakfast : {{no_of_breakfast}}</h2>
+
+<h2>Number of Snacks : {{no_of_snacks}}</h2>
+
+
+<form action="{% url 'optin' %}" method="post">
+    {% csrf_token %}
+<div class="form-check d-flex justify-content-center mb-4">
+    <input class="breakfast_check" type="checkbox" name="breakfast" value="yes" id="BfCheck" {% if already_breakfast %}checked{% endif %}
+      aria-describedby="registerCheckHelpText" {% if already_booked %}disabled{% endif %}/>
+    <label class="form-check-label" for="BfCheck">
+      I will have Breakfast
+    </label>
+  </div>
+
+  <div class="form-check d-flex justify-content-center mb-4">
+    <input class="snacks_check" type="checkbox" name="snacks" value="yes" id="SnCheck" {% if already_snacks %}checked{% endif %}
+      aria-describedby="registerCheckHelpText" {% if already_booked %}disabled{% endif %}/>
+    <label class="form-check-label" for="SnCheck">
+      I will have Snacks
+    </label>
+  </div>
+
+  <button type="submit" {% if already_booked %}disabled{% endif %}>Submit</button>
+</form>
+
+<br><br>
+<a href={% url 'logout' %}>Logout</a>
+  </body>
+  </html>
